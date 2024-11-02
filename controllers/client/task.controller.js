@@ -74,3 +74,16 @@ module.exports.changeMultiPatch = async (req, res) => {
     message: "Thành công !"
   })
 }
+
+module.exports.createPost = async (req, res) => {
+  const data = req.body;
+
+  const task = new Task(data);
+  await task.save();
+
+  res.json({
+    code: "success",
+    message: "Tạo công việc thành công!",
+    data: task
+  });
+}
