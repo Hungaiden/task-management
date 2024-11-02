@@ -56,3 +56,21 @@ module.exports.detail = async (req, res) => {
   });
   res.json(task);
 }
+
+module.exports.changeMultiPatch = async (req, res) => {
+  const status = req.body.status; // nhung thu vien body parser vao moi dung body dc
+  const ids = req.body.ids;
+
+  if(status) {
+    const tasks = await Task.updateMany({
+      _id : {$in : ids} // cap nhat cac id trong mang ids
+    }, {
+      status: status
+    })
+  };
+
+  res.json({
+    code: "success",
+    message: "Thành công !"
+  })
+}
