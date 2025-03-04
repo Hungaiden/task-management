@@ -1,13 +1,14 @@
 const express = require("express");
+
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 
-const databse = require("./config/database");
-databse.connect();
+const database = require("./config/database");
+database.connect();
 
 const routeClient = require("./routes/client/index.route");
 
@@ -18,7 +19,8 @@ app.use(cors());
 //   origin: 'http://example.com',
 //   optionsSuccessStatus: 200
 // }
-// cors(corsOptions);
+// cors(corsOptions); // cho phep ten mien nay truy cap vao tat ca api
+
 // parse application/json
 app.use(bodyParser.json());
 
